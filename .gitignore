@@ -1,17 +1,16 @@
-# Virtual environment
+# Python
 .venv/
 
-# IDE files
+# IDE
 .idea/
 
-# MLflow files
+# MLflow
 mlruns/
 mlflow.db
 
-# Large datasets & artifacts
+# Data & Models (handled by DVC)
 *.csv
-similarity.pkl
+*.pkl
 
-# Python cache
-__pycache__/
-*.pyc
+# DVC
+/data

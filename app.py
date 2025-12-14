@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 
 # ---------- TMDB API KEY ----------
-TMDB_API_KEY = st.secrets["TMDB_API_KEY"]
+TMDB_API_KEY = "8265bd1679663a7ea12ac168da84d2e8"
 
 # ---------- Page config ----------
 st.set_page_config(page_title="Movie Recommender System", layout="wide")

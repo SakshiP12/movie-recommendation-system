@@ -1,0 +1,5 @@
+outs:
+- md5: bfe80cd9f4f4aacd1bfa4c3208b32dbe
+  size: 2089503
+  hash: md5
+  path: movie_features.pkl
