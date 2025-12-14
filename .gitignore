@@ -1,0 +1,17 @@
+# Virtual environment
+.venv/
+
+# IDE files
+.idea/
+
+# MLflow files
+mlruns/
+mlflow.db
+
+# Large datasets & artifacts
+*.csv
+similarity.pkl
+
+# Python cache
+__pycache__/
+*.pyc
