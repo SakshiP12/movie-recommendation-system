@@ -1,4 +1,4 @@
-# 🎬 Movie Recommender System
+# 🎬 Movie Recommendation System
 
 An explainable content-based movie recommendation system built using KNN.
 
