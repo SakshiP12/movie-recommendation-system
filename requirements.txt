@@ -4,3 +4,6 @@ numpy
 scikit-learn
 requests
 mlflow
+dvc
+psycopg2-binary
+bcrypt
