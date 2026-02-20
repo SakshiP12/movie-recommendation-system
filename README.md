@@ -1,24 +1,24 @@
 # 🎬 Movie Recommendation System
 
-An end-to-end content-based Movie Recommendation System built using Machine Learning and deployed using Docker and AWS EC2. The application provides personalized movie recommendations based on similarity analysis and includes secure user authentication.
+An end-to-end Movie Recommendation System built using **KNN, TF-IDF, Streamlit, PostgreSQL, Docker, and AWS EC2**.
+
+This project provides personalized movie recommendations based on content similarity and includes full authentication with user activity tracking.
 
 ---
 
-## 📌 Features
+## 🚀 Features
 
-- Content-based movie recommendations using TF-IDF
-- K-Nearest Neighbors (KNN) similarity model
-- Cosine similarity distance metric
-- User authentication system (Signup / Login)
-- PostgreSQL database integration
-- Dockerized deployment
-- AWS EC2 hosting
-- Interactive UI built using Streamlit
-- User search history tracking
+- 🔍 Content-based Movie Recommendation using KNN
+- 🧠 TF-IDF Vectorization for feature extraction
+- 🔐 User Authentication (Login / Signup)
+- 🗂 User Search History Tracking
+- 🐳 Dockerized Application
+- ☁️ Deployed on AWS EC2
+- 🗄 PostgreSQL Database Integration
 
 ---
 
-## 🛠 Tech Stack
+## 🏗 Tech Stack
 
 - Python
 - Scikit-learn
@@ -31,47 +31,101 @@ An end-to-end content-based Movie Recommendation System built using Machine Lear
 
 ---
 
-## 🧠 Machine Learning Approach
+## 📂 Project Structure
 
-1. Data preprocessing and cleaning of movie metadata.
-2. Creation of a weighted "soup" of movie features (genres, keywords, cast, director, overview).
-3. TF-IDF vectorization to convert text data into numerical format.
-4. KNN model trained using cosine similarity.
-5. Top similar movies returned based on distance ranking.
+```
+movie-recommendation-system-main/
+│
+├── app.py
+├── build_knn_model.py
+├── requirements.txt
+├── Dockerfile
+├── README.md
+│
+├── tmdb_5000_movies.csv
+├── tmdb_5000_credits.csv
+│
+├── movie_list_knn.pkl
+├── movie_features.pkl
+├── knn_model.pkl
+├── tfidf_vectorizer.pkl
+└── movie_list.pkl
+```
 
 ---
 
-## ⚙️ Project Workflow
+## ⚙️ How It Works
 
-1. Load TMDB dataset.
-2. Preprocess and engineer features.
-3. Train KNN similarity model.
-4. Save trained model using Pickle.
-5. Build Streamlit web interface.
-6. Integrate PostgreSQL for authentication.
-7. Containerize using Docker.
-8. Deploy on AWS EC2.
+1. Movie metadata is processed.
+2. Important text features are combined into a single "soup".
+3. TF-IDF converts text into numerical vectors.
+4. KNN finds similar movies using cosine similarity.
+5. Recommendations are displayed via Streamlit UI.
+6. User login and activity are stored in PostgreSQL.
 
 ---
 
-## 🐳 Run Locally Using Docker
+## 🧠 Model Building
 
-Build Docker image:
+To rebuild the model locally:
+
+```bash
+python build_knn_model.py
+```
+
+This generates:
+
+- movie_list_knn.pkl
+- movie_features.pkl
+- knn_model.pkl
+- tfidf_vectorizer.pkl
+
+---
+
+## 🖥 Run Locally (Without Docker)
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run:
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## 🐳 Run Using Docker
+
+### 1️⃣ Build Docker Image
 
 ```bash
 docker build -t movie-app .
 ```
 
-Run container:
+### 2️⃣ Run PostgreSQL Container
 
 ```bash
-docker run -d -p 8501:8501 movie-app
+docker run -d \
+  --name movie-db \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=**** \
+  -e POSTGRES_DB=movie_app \
+  -p 5432:5432 \
+  postgres
 ```
 
-Open in browser:
+### 3️⃣ Run App Container
 
-```
-http://localhost:8501
+```bash
+docker run -d \
+  --name movie-app-container \
+  --link movie-db \
+  -p 8501:8501 \
+  movie-app
 ```
 
 ---
@@ -95,41 +149,33 @@ CREATE TABLE user_activity (
 
 ---
 
-## ☁ Deployment Architecture
+## ☁️ AWS EC2 Deployment Steps
 
-User → AWS EC2 → Docker Container (Streamlit App)  
-            ↓  
-      Docker Network  
-            ↓  
-     PostgreSQL Container  
-
----
-
-## 📂 Project Structure
-
-```
-movie-recommendation-system/
-│
-├── app.py
-├── build_knn_model.py
-├── Dockerfile
-├── requirements.txt
-├── README.md
-├── movie_list_knn.pkl
-├── movie_features.pkl
-├── knn_model.pkl
-└── tmdb_5000_movies.csv
-```
+1. Launch Ubuntu EC2 instance
+2. Install Docker
+3. Clone repository
+4. Build Docker image
+5. Run PostgreSQL container
+6. Run Streamlit container
+7. Open port 8501 in Security Group
 
 ---
 
-## 🎯 Key Highlights
+## 📊 Recommendation Logic
 
-- End-to-end ML deployment project
-- Full-stack integration (ML + Backend + Deployment)
-- Real-world Docker networking
-- Secure password hashing using bcrypt
-- Production-ready architecture
+The system uses:
+
+- Content-based filtering
+- Cosine similarity
+- K-Nearest Neighbors algorithm
+
+Movies are recommended based on similarity in:
+
+- Genres
+- Cast
+- Keywords
+- Overview
+- Director
 
 ---
 
