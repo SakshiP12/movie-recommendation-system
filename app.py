@@ -13,8 +13,8 @@ def get_connection():
     return psycopg2.connect(
         host="movie-db",
         database="movie_app",
-        user="postgres",
-        password="postgres123"
+        user="username",
+        password="******"
     )
 
 # ================= AUTH FUNCTIONS =================
