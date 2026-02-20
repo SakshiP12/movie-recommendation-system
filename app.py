@@ -11,7 +11,7 @@ import bcrypt
 # ================= DATABASE CONNECTION =================
 def get_connection():
     return psycopg2.connect(
-        host="localhost",
+        host="movie-db",
         database="movie_app",
         user="postgres",
         password="postgres123"
